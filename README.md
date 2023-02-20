@@ -13,8 +13,8 @@ You can add the following two lines in your .emacs file to load linepasser.el an
 
 ## Example use
 
-To use linepasser, you should first write a command to the first line of the buffer. After than you can press C-x j to pass a line as arguments to that command.
+To use linepasser, you should first write a shell command on the first line of the buffer. After than you can press C-x j to pass a line as arguments to that command.
 
-You can count words and characters with `wc`, do calculations with `bc`, get reading of Japanese words with `mecab`, and so on...
+By providing different commands, you can count words and characters with `wc`, do calculations with `bc`, get reading of Japanese words with `mecab`, and so on...
 
 ![linepasser](linepasser20230220.gif)
