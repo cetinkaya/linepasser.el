@@ -7,7 +7,7 @@ linepasser.el is an emacs minor mode that allows passing lines of a buffer as ar
 You can add the following two lines in your .emacs file to load linepasser.el and start it in text mode.
 
 ```lsp
-(load "/WHEREYOUPUTLINEPASSER/linepasser.el")
+(load "[PATHOFDIRECTORYTHATCONTAINSLINEPASSER.EL]/linepasser.el")
 (add-hook 'text-mode-hook 'line-passer-mode)
 ```
 
