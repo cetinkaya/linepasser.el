@@ -17,4 +17,4 @@ To use linepasser, you should first write a shell command on the first line of t
 
 You can count words and characters with `wc`, do calculations with `bc`, get reading of Japanese words with `mecab`, and so on...
 
-![usecasegifs/linepasser](linepasser20230221.gif)
+![linepasser-use-case](usecasegifs/linepasser20230221.gif)
