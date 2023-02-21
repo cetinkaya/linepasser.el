@@ -5,15 +5,28 @@
     (widen)
     (save-excursion
       (goto-line 0)
-      (buffer-substring-no-properties (line-beginning-position) (line-end-position)))))
+      (string-trim (buffer-substring-no-properties
+                    (line-beginning-position)
+                    (line-end-position))))))
 
 (defun pass-line ()
   (interactive)
-  (let ((current-line (buffer-substring-no-properties (line-beginning-position) (line-end-position)))
-        (normal-state-p (evil-normal-state-p)))
+  (let* ((command (get-command))
+         (current-line (buffer-substring-no-properties
+                        (line-beginning-position)
+                        (line-end-position)))
+         (piped-comand-p (string-equal "|" (substring command 0 1)))
+         (normal-state-p (evil-normal-state-p)))
     (evil-open-below 1)
     (insert "  ")
-    (insert (string-trim (shell-command-to-string (concat (get-command) " '" current-line "'"))))
+    (let ((command-result
+           (string-trim
+            (if piped-comand-p
+                (shell-command-to-string
+                 (concat "echo '" current-line "'" command))
+              (shell-command-to-string
+               (concat command " '" current-line "'"))))))
+      (insert command-result))
     (if normal-state-p (evil-normal-state))))
 
 (define-minor-mode line-passer-mode
