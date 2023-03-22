@@ -1,5 +1,12 @@
 ;; Ahmet Cetinkaya, 2023
 
+(defun escape-letters (str escape-list)
+  (with-output-to-string
+    (dolist (c (string-to-list str))
+      (if (member (string c) escape-list)
+          (princ (concat "\\" (string c)))
+        (princ (string c))))))
+
 (defun get-command ()
   (save-restriction
     (widen)
@@ -19,6 +26,8 @@
             (buffer-substring-no-properties
              (line-beginning-position)
              (line-end-position))))
+         (escaped-current-line-or-region
+          (escape-letters current-line-or-region '("'")))
          (piped-comand-p (string-equal "|" (substring command 0 1)))
          (normal-state-p (evil-normal-state-p)))
     (evil-open-below 1)
