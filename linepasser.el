@@ -36,9 +36,9 @@
            (string-trim
             (if piped-comand-p
                 (shell-command-to-string
-                 (concat "echo '" current-line-or-region "'" command))
+                 (concat "echo '" escaped-current-line-or-region "'" command))
               (shell-command-to-string
-               (concat command " '" current-line-or-region "'"))))))
+               (concat command " '" escaped-current-line-or-region "'"))))))
       (insert command-result))
     (if normal-state-p (evil-normal-state))))
 
