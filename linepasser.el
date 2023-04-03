@@ -45,6 +45,12 @@
 (define-minor-mode line-passer-mode
   "Pass lines as arguments to a command written on the first line."
   :lighter " lp"
-  :keymap (let ((map (make-sparse-keymap))) (define-key map (kbd "C-x j") 'pass-line) map))
+  :keymap (let ((map (make-sparse-keymap))) (define-key map (kbd "C-x j") 'pass-line) map)
+
+  (setq keywords '(("^  [^\n]+$" . font-lock-doc-face)))
+  (font-lock-add-keywords nil keywords)
+  (if (fboundp 'font-lock-flush)
+      (font-lock-flush)
+    (when font-lock-mode (with-no-warnings (font-lock-fontify-buffer)))))
 
 (provide 'line-passer-mode)
